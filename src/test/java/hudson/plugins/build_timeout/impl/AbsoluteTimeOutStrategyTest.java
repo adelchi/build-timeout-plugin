@@ -85,7 +85,7 @@ public class AbsoluteTimeOutStrategyTest {
         j.assertBuildStatus(Result.SUCCESS, p.scheduleBuild2(
                 0,
                 new Cause.UserCause(),
-                new ParametersAction(new StringParameterValue("TIMEOUT", "1"))
+                new ParametersAction(new StringParameterValue("TIMEOUT", "10"))
         ).get());
         
         // If called with TIMEOUT=0, the build is aborted immediately.

@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>build-timeout</artifactId>
-  <version>1.20</version>
+  <version>1.20.1.KMUONLINE</version>
   <packaging>hpi</packaging>
 
   <name>Build Timeout</name>

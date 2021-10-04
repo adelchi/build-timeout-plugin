@@ -271,7 +271,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
             FreeStyleBuild build = project.scheduleBuild2(0).get();
             
             assertBuildStatus(Result.FAILURE, build);
-            assertFalse(checkBuilder.executed);
+            assertTrue(checkBuilder.executed);
             assertTrue(checkPublisher.executed);
             assertNull(build.getDescription());
         }
@@ -293,7 +293,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
             FreeStyleBuild build = project.scheduleBuild2(0).get();
             
             assertBuildStatus(Result.FAILURE, build);
-            assertFalse(checkBuilder.executed);
+            assertTrue(checkBuilder.executed);
             assertTrue(checkPublisher.executed);
             assertNotNull(build.getDescription());
             assertFalse(build.getDescription().isEmpty());
@@ -426,7 +426,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
             FreeStyleBuild build = project.scheduleBuild2(0).get();
             
             assertBuildStatus(Result.FAILURE, build);
-            assertFalse(checkBuilder.executed);
+            assertTrue(checkBuilder.executed);
             assertTrue(checkPublisher.executed);
             assertNull(build.getDescription());
         }
@@ -460,7 +460,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
             FreeStyleBuild build = project.scheduleBuild2(0).get();
             
             assertBuildStatus(Result.FAILURE, build);
-            assertFalse(checkBuilder.executed);
+            assertTrue(checkBuilder.executed);
             assertTrue(checkPublisher.executed);
             assertNotNull(build.getDescription());
             assertFalse(build.getDescription().isEmpty());
@@ -576,7 +576,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
         );
         assertEquals(
                 "3",
-                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutMinutes()
+                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutSeconds()
         );
         
         // assert operation is preserved
@@ -620,7 +620,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
         );
         assertEquals(
                 "3",
-                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutMinutes()
+                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutSeconds()
         );
         
         // assert operation is preserved
@@ -677,7 +677,7 @@ public class BuildTimeoutWrapperIntegrationTest extends HudsonTestCase {
         );
         assertEquals(
                 "3",
-                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutMinutes()
+                ((AbsoluteTimeOutStrategy)p.getBuildWrappersList().get(BuildTimeoutWrapper.class).getStrategy()).getTimeoutSeconds()
         );
         
         // assert operation is preserved

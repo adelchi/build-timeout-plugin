@@ -20,6 +20,7 @@ import java.io.IOException;
  */
 public abstract class BuildTimeOutStrategy implements Describable<BuildTimeOutStrategy> {
 
+    public static final long SECONDS = 1000L;
     public static final long MINUTES = 60*1000L;
     public static final Logger LOG = Logger.getLogger(BuildTimeOutStrategy.class.getName());
 

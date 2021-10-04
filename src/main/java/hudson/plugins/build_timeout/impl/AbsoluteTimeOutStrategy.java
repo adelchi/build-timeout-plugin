@@ -14,34 +14,34 @@ import javax.annotation.Nonnull;
 import java.io.IOException;
 
 /**
- * If the build took longer than <tt>timeoutMinutes</tt> amount of minutes, it will be terminated.
+ * If the build took longer than <tt>timeoutSeconds</tt> amount of minutes, it will be terminated.
  */
 public class AbsoluteTimeOutStrategy extends BuildTimeOutStrategy {
 
-    private final String timeoutMinutes;
+    private final String timeoutSeconds;
 
     /**
-     * @return minutes to timeout.
+     * @return seconds to timeout.
      */
-    public String getTimeoutMinutes() {
-        return timeoutMinutes;
+    public String getTimeoutSeconds() {
+        return timeoutSeconds;
     }
 
     @Deprecated
-    public AbsoluteTimeOutStrategy(int timeoutMinutes) {
-        this.timeoutMinutes = Integer.toString(Math.max((int) (BuildTimeoutWrapper.MINIMUM_TIMEOUT_MILLISECONDS / MINUTES), timeoutMinutes));
+    public AbsoluteTimeOutStrategy(int timeoutSeconds) {
+        this.timeoutSeconds = Integer.toString(Math.max((int) (BuildTimeoutWrapper.MINIMUM_TIMEOUT_MILLISECONDS / SECONDS), timeoutSeconds));
     }
 
     @DataBoundConstructor
-    public AbsoluteTimeOutStrategy(String timeoutMinutes) {
-        this.timeoutMinutes = timeoutMinutes;
+    public AbsoluteTimeOutStrategy(String timeoutSeconds) {
+        this.timeoutSeconds = timeoutSeconds;
     }
 
     @Override
     public long getTimeOut(@Nonnull AbstractBuild<?,?> build, @Nonnull BuildListener listener)
             throws InterruptedException, MacroEvaluationException, IOException {
-        return MINUTES * Math.max((int) (BuildTimeoutWrapper.MINIMUM_TIMEOUT_MILLISECONDS / MINUTES), Integer.parseInt(
-                expandAll(build, listener, getTimeoutMinutes())));
+        return SECONDS * Math.max((int) (BuildTimeoutWrapper.MINIMUM_TIMEOUT_MILLISECONDS / SECONDS), Integer.parseInt(
+                expandAll(build, listener, getTimeoutSeconds())));
     }
 
     @Override

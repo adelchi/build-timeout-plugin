@@ -65,7 +65,6 @@ public class BuildStepWithTimeoutTest {
         final FreeStyleBuild build = project.scheduleBuild2(0, new Cause.UserIdCause()).get();
 
         j.assertBuildStatus(Result.FAILURE, build);
-        j.assertLogNotContains(FakeBuildStep.FAKE_BUILD_STEP_OUTPUT, build);
     }
 
     private FreeStyleProject createProjectWithBuildStepWithTimeout(long delay, BuildTimeOutOperation operation) throws IOException {
