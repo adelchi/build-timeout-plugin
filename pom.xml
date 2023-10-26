@@ -18,7 +18,7 @@
   <packaging>hpi</packaging>
   <name>Build Timeout</name>
   <description>Aborts a build if it's taking too long</description>
-  <version>1.19</version>
+  <version>1.19.KMUONLINE</version>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Build-timeout+Plugin</url>
 
    <scm>
@@ -75,16 +75,15 @@
     <repositories>
         <repository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </repository>
     </repositories>
 
     <pluginRepositories>
         <pluginRepository>
             <id>repo.jenkins-ci.org</id>
-            <url>http://repo.jenkins-ci.org/public/</url>
+            <url>https://repo.jenkins-ci.org/public/</url>
         </pluginRepository>
     </pluginRepositories>
 </project>  
   
-

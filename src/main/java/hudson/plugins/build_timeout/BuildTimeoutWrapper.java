@@ -44,7 +44,7 @@ import org.kohsuke.stapler.StaplerRequest;
 public class BuildTimeoutWrapper extends BuildWrapper {
 
     @SuppressFBWarnings(value = "MS_SHOULD_BE_FINAL", justification = "Diagnostic fields are left mutable so that groovy console can be used to dynamically turn/off probes.")
-    public static long MINIMUM_TIMEOUT_MILLISECONDS = Long.getLong(BuildTimeoutWrapper.class.getName()+ ".MINIMUM_TIMEOUT_MILLISECONDS", 3 * 60 * 1000);
+    public static long MINIMUM_TIMEOUT_MILLISECONDS = Long.getLong(BuildTimeoutWrapper.class.getName()+ ".MINIMUM_TIMEOUT_MILLISECONDS", 1000);
 
 
     private /* final */ BuildTimeOutStrategy strategy;
@@ -123,7 +123,7 @@ public class BuildTimeoutWrapper extends BuildWrapper {
             private final AbstractBuild<?,?> build;
             private final BuildListener listener;
             
-            //Did some opertion failed?
+            //Did some operation fail?
             protected boolean operationFailed = false;
             
             final class TimeoutTimerTask extends SafeTimerTask {
@@ -210,7 +210,7 @@ public class BuildTimeoutWrapper extends BuildWrapper {
             return new EnvironmentImpl(build, listener);
         } catch (MacroEvaluationException e) {
             e.printStackTrace(listener.fatalError("Could not evaluate macro"));
-            throw new IOException2(e.getMessage(), e);
+            throw new IOException(e.getMessage(), e);
         }
     }
 
@@ -222,7 +222,7 @@ public class BuildTimeoutWrapper extends BuildWrapper {
         
         if ("elastic".equalsIgnoreCase(timeoutType)) {
             strategy = new ElasticTimeOutStrategy(timeoutPercentage,
-                    timeoutMinutesElasticDefault != null ? timeoutMinutesElasticDefault.intValue() : 60,
+                    timeoutMinutesElasticDefault != null ? timeoutMinutesElasticDefault : 60,
                     3);
         } else if ("likelyStuck".equalsIgnoreCase(timeoutType)) {
             strategy = new LikelyStuckTimeOutStrategy();
