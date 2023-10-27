@@ -24,9 +24,6 @@
 
 package hudson.plugins.build_timeout.operations;
 
-import static hudson.util.TimeUnit2.MILLISECONDS;
-import static hudson.util.TimeUnit2.MINUTES;
-
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.Extension;
@@ -36,6 +33,8 @@ import hudson.model.Executor;
 import hudson.model.Result;
 import hudson.plugins.build_timeout.BuildTimeOutOperation;
 import hudson.plugins.build_timeout.BuildTimeOutOperationDescriptor;
+
+import static java.util.concurrent.TimeUnit.*;
 
 /**
  * Abort the build.
@@ -54,10 +53,10 @@ public class AbortOperation extends BuildTimeOutOperation {
      */
     @Override
     public boolean perform(AbstractBuild<?, ?> build, BuildListener listener, long effectiveTimeout) {
-        long effectiveTimeoutMinutes = MINUTES.convert(effectiveTimeout,MILLISECONDS);
+        long effectiveTimeoutSeconds = SECONDS.convert(effectiveTimeout,MILLISECONDS);
         // Use messages in hudson.plugins.build_timeout.Messages for historical reason.
         listener.getLogger().println(hudson.plugins.build_timeout.Messages.Timeout_Message(
-                effectiveTimeoutMinutes,
+                effectiveTimeoutSeconds,
                 hudson.plugins.build_timeout.Messages.Timeout_Aborted())
         );
         
